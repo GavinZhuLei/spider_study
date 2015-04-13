@@ -1,7 +1,7 @@
 ﻿import urllib2
 import random
 
-url = 'http://www.whatismyip.com.tw'
+url = 'http://cn-proxy.com/'
 
 iplist = ['124.88.67.40:80', '183.131.144.204:80', '27.202.2.136:80']
 ##设置代理
