@@ -28,11 +28,23 @@ def get_iplist():
         req = urlllib2.Request(url)
         response = urllib2.urlopen(req)
         
-    html = response.read()
-##    print html
-    values = re.findall(r'(<tbody>)\w*', html)
-    print values
+    html = response.read().decode('utf-8')
+
+    list_tr = re.findall(r'<tr>.+?</tr>', html, re.S)
+    list_ip = []
+    for tr in list_tr:
+        ip_td = re.findall(r'<td>.+?</td>', tr, re.S)
+        if len(ip_td):
+            ip = re.search(r'((?:(?:25[0-5]|2[0-4]\d|[01]?\d?\d)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d?\d))', ip_td[0])
+            if ip:
+                port = re.search(r'[0-9]{1,5}', ip_td[1])
+                list_ip.append(ip.group(0)+':'+port.group(0))
+
+    return list_ip
+        
     
 
 if __name__ == "__main__":
-    get_iplist()
+    ips = get_iplist()
+    for ip in ips:
+        print ip
