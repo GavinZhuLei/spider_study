@@ -1,6 +1,7 @@
 import scrapy
 from newblogs.items import IndexItem
 
+
 class IndexSpider(scrapy.Spider):
     name = 'blogindex'
     allowed_domains = ['cnblogs.com']
