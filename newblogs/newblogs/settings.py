@@ -15,3 +15,11 @@ NEWSPIDER_MODULE = 'newblogs.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'newblogs (+http://www.yourdomain.com)'
+
+
+ITEM_PIPELINES = {
+    'newblogs.pipelines.NormalPipeline': 1,
+    'newblogs.pipelines.SaveDbPipeline': 2,
+    # 'newblogs.pipelines.SaveLocalPipeline':3,
+    # 'newblogs.pipelines.JsonWriterPipeline': 800,
+}
