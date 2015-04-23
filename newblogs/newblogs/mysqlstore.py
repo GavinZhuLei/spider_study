@@ -9,7 +9,7 @@ def save_blog(blog):
         conn = MySQLdb.connect(host='localhost',user='root',passwd='123456',port=3306)
         cur = conn.cursor()
         conn.select_db('newblogs')
-        cur.execute('SET NAMES \'utf8\';')
+        # cur.execute('SET NAMES \'utf8\';')
         command = 'insert into blog(id,title,url,content) value(%s,%s,%s,%s)'
         values = [long(blog['id'][0]),blog['title'][0].encode('utf-8'),blog['url'][0],blog['content'][0].encode('utf-8')]
         cur.execute(command, values)
@@ -60,9 +60,9 @@ def get_all():
         result = cur.fetchall()
         conn.commit()
         for row in result:
-            with open('test.html', 'a') as f:
-                f.write(row[0]+'\n')
-            # print row[0]
+            # with open('test.html', 'a') as f:
+            #     f.write(row[0]+'\n')
+            print row[0]
 
     except MySQLdb.Error,e:
         with open('error.txt','a') as f:
