@@ -19,7 +19,7 @@ class BlogSpider(CrawlSpider):
         sel = scrapy.selector.Selector(response)
         item = BlogItem()
         item['id'] = sel.xpath('//div[@class="post"]/div[@class="postDesc"]/a[last()]/@onclick').re(r'\d+')
-        
+        item['time'] = sel.xpath('//div[@class="post"]/div[@class="postDesc"]/span[@id="post-date"]/text()').extract()
         item['title'] = sel.xpath('//div[@class="post"]/h1/a/text()').extract()
         item['url'] = sel.xpath('//div[@class="post"]/h1/a/@href').extract()
         item['content'] = sel.xpath('//div[@class="post"]/div[@class="postBody"]/div[@id="cnblogs_post_body"]').extract()

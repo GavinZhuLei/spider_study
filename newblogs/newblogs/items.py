@@ -15,6 +15,7 @@ class BlogItem(scrapy.Item):
     title = scrapy.Field()
     url = scrapy.Field()
     content = scrapy.Field()
+    time = scrapy.Field()
 
 
 class IndexItem(scrapy.Item):
